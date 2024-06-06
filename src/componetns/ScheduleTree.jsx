@@ -1,4 +1,5 @@
 import { ScheduleItem } from "./ScheduleItem";
+import { ScheduleTime } from "./ScheduleTime";
 
 export const ScheduleTree = () => {
   return (
@@ -7,6 +8,7 @@ export const ScheduleTree = () => {
       <br />
       <ScheduleItem label="test2" />
       <p>end:</p>
+      <ScheduleTime />
     </>
   );
 };
