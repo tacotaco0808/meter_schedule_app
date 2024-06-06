@@ -1,15 +1,14 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ScheduleContainer } from "./ScheduleContainer";
 
 export const ScheduleTree = () => {
   const [scheduleTree, setScheduleTree] = useState([]);
-  useEffect(() => {
-    // 初期データを設定する
+  const createSchedule = () => {
     setScheduleTree((prevScheduleTree) => [
       ...prevScheduleTree,
-      { title: "test", time: "12:00" },
+      { title: "追加した予定", time: "12:00" },
     ]);
-  }, []); // 空の依存配列を渡して、一度だけ実行されるようにする
+  };
   const showScheduleTree = scheduleTree.map((schedule, index) => (
     <li key={index}>
       <ScheduleContainer
@@ -19,5 +18,10 @@ export const ScheduleTree = () => {
       />
     </li>
   ));
-  return <>{showScheduleTree}</>;
+  return (
+    <>
+      <ul>{showScheduleTree}</ul>
+      <button onClick={createSchedule}>追加</button>
+    </>
+  );
 };
