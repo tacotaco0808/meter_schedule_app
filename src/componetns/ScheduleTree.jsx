@@ -1,12 +1,11 @@
-import { ScheduleItem } from "./ScheduleItem";
+import { ScheduleContainer } from "./ScheduleContainer";
 
 export const ScheduleTree = () => {
   return (
     <>
-      <ScheduleItem label="test" />
-      <br />
-      <ScheduleItem label="test2" />
-      <p>end:</p>
+      <ScheduleContainer label="test" time="12:24" />
+      <ScheduleContainer label="test1" time="12:00" />
+      <ScheduleContainer label="test2" time="12:40" />
     </>
   );
 };
