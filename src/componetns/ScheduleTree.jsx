@@ -9,15 +9,25 @@ export const ScheduleTree = () => {
       { title: "追加した予定", time: "12:00" },
     ]);
   };
-  const showScheduleTree = scheduleTree.map((schedule, index) => (
-    <li key={index}>
-      <ScheduleContainer
-        label="label"
-        scheduleTitle={schedule.title}
-        time={schedule.time}
-      />
-    </li>
-  ));
+  const showScheduleTree = scheduleTree.map((schedule, index) => {
+    let label;
+    if (index === 0) {
+      label = "start";
+    } else if (index === scheduleTree.length - 1) {
+      label = "end";
+    } else {
+      label = "予定No." + index;
+    }
+    return (
+      <li key={index}>
+        <ScheduleContainer
+          label={label}
+          scheduleTitle={schedule.title}
+          time={schedule.time}
+        />
+      </li>
+    );
+  });
   return (
     <>
       <ul>{showScheduleTree}</ul>
