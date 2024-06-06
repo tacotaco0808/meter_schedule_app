@@ -4,10 +4,12 @@ export const ScheduleTime = () => {
   const inputTimeRef = useRef();
   const [scheduleTime, setScheduleTime] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
+  const inputTimeChange = () => {
+    setScheduleTime(inputTimeRef.current.value);
+  };
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       console.log("enter");
-      setScheduleTime(inputTimeRef.current.value);
       setIsVisible(!isVisible);
     }
   };
@@ -25,6 +27,7 @@ export const ScheduleTime = () => {
           ref={inputTimeRef}
           onKeyDown={handleKeyDown}
           onClick={handleInputTimeOnClick}
+          onChange={inputTimeChange}
         />
       ) : (
         scheduleTime
