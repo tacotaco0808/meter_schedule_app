@@ -8,9 +8,10 @@ export const ScheduleContainer = ({
   scheduleTitle,
   keyNumber,
   updateSchedule,
+  removeSchedule,
 }) => {
-  const debug = () => {
-    console.log(scheduleTitle);
+  const removeOnClick = () => {
+    removeSchedule(keyNumber);
   };
   return (
     <div>
@@ -26,7 +27,7 @@ export const ScheduleContainer = ({
         keyNumber={keyNumber}
         updateSchedule={updateSchedule}
       />
-      <button onClick={debug}>debug</button>
+      <button onClick={removeOnClick}>削除</button>
     </div>
   );
 };
@@ -37,4 +38,5 @@ ScheduleContainer.propTypes = {
   time: PropTypes.string,
   keyNumber: PropTypes.number,
   updateSchedule: PropTypes.func,
+  removeSchedule: PropTypes.func,
 };

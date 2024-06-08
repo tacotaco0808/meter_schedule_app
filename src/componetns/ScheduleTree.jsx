@@ -17,7 +17,7 @@ export const ScheduleTree = () => {
   const removeSchedule = (delKeyNumber) => {
     console.log(`number:${delKeyNumber},`);
     const newScheduleTree = scheduleTree.filter(
-      (_, index) => index !== delKeyNumber
+      (schedule) => schedule.id !== delKeyNumber
     );
     setScheduleTree([...newScheduleTree]);
   };
@@ -55,6 +55,7 @@ export const ScheduleTree = () => {
           time={schedule.time}
           keyNumber={schedule.id}
           updateSchedule={updateSchedule}
+          removeSchedule={removeSchedule}
         />
       </li>
     );
