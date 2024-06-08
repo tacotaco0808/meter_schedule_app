@@ -1,14 +1,21 @@
 import PropTypes from "prop-types";
 import { useRef, useState } from "react";
 /*時刻と予定の名前情報を入力するためのコンポーネント */
-export const ScheduleItem = ({ label }) => {
+export const ScheduleItem = ({
+  label,
+  scheduleTitle,
+  keyNumber,
+  updateSchedule,
+}) => {
   //変数
   const [isVisible, setIsVisible] = useState(false);
-  const [scheduleText, setScheduleText] = useState("");
+  const [scheduleText, setScheduleText] = useState(scheduleTitle);
   const inputRef = useRef();
   //関数
   const handleInputOnChange = () => {
     setScheduleText(inputRef.current.value);
+    //titleのみupdate
+    updateSchedule(keyNumber, inputRef.current.value, "NONE");
   };
   const handleInputOnClick = (e) => {
     //テキストボックスをクリックしても表示切替無効
@@ -48,4 +55,7 @@ export const ScheduleItem = ({ label }) => {
 };
 ScheduleItem.propTypes = {
   label: PropTypes.string,
+  scheduleTitle: PropTypes.string,
+  keyNumber: PropTypes.number,
+  updateSchedule: PropTypes.func,
 };

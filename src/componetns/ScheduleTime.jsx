@@ -1,12 +1,14 @@
 import { useRef, useState } from "react";
 import PropTypes from "prop-types";
 
-export const ScheduleTime = ({ time }) => {
+export const ScheduleTime = ({ time, keyNumber, updateSchedule }) => {
   const inputTimeRef = useRef();
   const [scheduleTime, setScheduleTime] = useState(time);
   const [isVisible, setIsVisible] = useState(false);
   const inputTimeChange = () => {
     setScheduleTime(inputTimeRef.current.value);
+    //timeのみupdate
+    updateSchedule(keyNumber, "NONE", inputTimeRef.current.value);
   };
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
@@ -38,4 +40,6 @@ export const ScheduleTime = ({ time }) => {
 };
 ScheduleTime.propTypes = {
   time: PropTypes.string,
+  keyNumber: PropTypes.number,
+  updateSchedule: PropTypes.func,
 };
