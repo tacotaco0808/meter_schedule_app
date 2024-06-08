@@ -10,7 +10,7 @@ export const ScheduleTree = () => {
   const createSchedule = () => {
     setScheduleTree((prevScheduleTree) => [
       ...prevScheduleTree,
-      { title: "追加した予定", time: "12:00" },
+      { id: Date.now(), title: "追加した予定", time: "12:00" },
     ]);
   };
   /*予定の削除 keyNumberで指定した番号の配列の削除*/
@@ -24,18 +24,15 @@ export const ScheduleTree = () => {
   /*予定情報を上書き keyNumberで指定した番号の配列の{title,time}を書き換える */
   const updateSchedule = (keyNumber, title, time) => {
     setScheduleTree((prevArray) => {
-      const newArray = [...prevArray];
-      //titleとtimeの両方同時入力とは限らない
-      if (title === "NONE") {
-        console.log("timeのみ変更");
-        newArray[keyNumber] = { ...newArray[keyNumber], time: time };
-      } else if (time === "NONE") {
-        console.log("titleのみ変更");
-        newArray[keyNumber] = { ...newArray[keyNumber], title: title };
-      } else {
-        newArray[keyNumber] = { title: title, time: time };
-        console.log("titleとtimeを変更");
-      }
+      const newArray = prevArray.map((schedule) =>
+        schedule.id === keyNumber
+          ? {
+              ...schedule,
+              title: title !== "NONE" ? title : schedule.title,
+              time: time !== "NONE" ? time : schedule.time,
+            }
+          : schedule
+      );
       return newArray;
     });
   };
@@ -51,12 +48,12 @@ export const ScheduleTree = () => {
     }
     console.log(scheduleTree);
     return (
-      <li key={index}>
+      <li key={schedule.id}>
         <ScheduleContainer
           label={label}
           scheduleTitle={schedule.title}
           time={schedule.time}
-          keyNumber={index}
+          keyNumber={schedule.id}
           updateSchedule={updateSchedule}
         />
       </li>

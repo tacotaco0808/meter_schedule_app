@@ -9,6 +9,9 @@ export const ScheduleContainer = ({
   keyNumber,
   updateSchedule,
 }) => {
+  const debug = () => {
+    console.log(scheduleTitle);
+  };
   return (
     <div>
       <p>{keyNumber}</p>
@@ -23,6 +26,7 @@ export const ScheduleContainer = ({
         keyNumber={keyNumber}
         updateSchedule={updateSchedule}
       />
+      <button onClick={debug}>debug</button>
     </div>
   );
 };
