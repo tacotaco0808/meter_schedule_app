@@ -3,12 +3,23 @@ import { ScheduleContainer } from "./ScheduleContainer";
 
 export const ScheduleTree = () => {
   const [scheduleTree, setScheduleTree] = useState([]);
+  const debug = () => {
+    removeSchedule(3);
+  };
   /*予定を追加 */
   const createSchedule = () => {
     setScheduleTree((prevScheduleTree) => [
       ...prevScheduleTree,
       { title: "追加した予定", time: "12:00" },
     ]);
+  };
+  /*予定の削除 keyNumberで指定した番号の配列の削除*/
+  const removeSchedule = (delKeyNumber) => {
+    console.log(`number:${delKeyNumber},`);
+    const newScheduleTree = scheduleTree.filter(
+      (_, index) => index !== delKeyNumber
+    );
+    setScheduleTree([...newScheduleTree]);
   };
   /*予定情報を上書き keyNumberで指定した番号の配列の{title,time}を書き換える */
   const updateSchedule = (keyNumber, title, time) => {
@@ -55,6 +66,7 @@ export const ScheduleTree = () => {
     <>
       <ul>{showScheduleTree}</ul>
       <button onClick={createSchedule}>追加</button>
+      <button onClick={debug}>debug</button>
     </>
   );
 };
